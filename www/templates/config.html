@@ -1,0 +1,55 @@
+<ion-view view-title="Configurações">
+  <ion-content class="browseBg">
+  	<ion-refresher on-refresh="vm.doRefresh()">
+                     
+     </ion-refresher>
+    <div class="row">
+		<div class="col col-100">
+			<div class="list">
+				<button ng-click="vm.clearStorage()" class="button button-block button-assertive">Esquecer... xD</button>		
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-100">
+			<div class="list">
+				<input type="text" ng-model="vm.sentence" placeholder="Yoda speak...">
+				<button ng-click="vm.yodaSpeak(vm.sentence)" class="button button-block button-energized">Falar</button>
+				<p>{{vm.yoda}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-50">
+			<div class="list">
+				<h4>R$</h4>
+				<input type="text" ng-model="vm.real" placeholder="R$ BRL">
+				<button ng-click="vm.converterEuro(vm.real)" class="button button-block button-energized">CONVERTER PARA EURO</button>
+				<h3>{{vm.convertido.to_amount | currency: '€'}}</h3>
+			</div>
+		</div>
+		<div class="col col-50">
+			<div class="list">
+				<h4>€</h4>
+				<input type="text" ng-model="vm.euro" placeholder="€ EUR">
+				<button ng-click="vm.converterReal(vm.euro)" class="button button-block button-energized">CONVERTER PARA REAL</button>
+				<h3>{{vm.convertidoReal.to_amount | currency: 'R$'}}</h3>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-100">
+			<ui class="list">
+				<li ng-repeat="out in vm.outsSaved track by $index" class="item">
+					<h2><strong>{{$index + 1}} º</strong></h2>
+					<h2>Preço da cerveja: {{out.price | currency}}</h2> 
+					<h2>Quantidade: {{out.amnt}}</h2> 
+					<h2>Preço pago: {{out.paid | currency}}</h2> 
+					<h2>Dividido por: {{out.div}} pessoas</h2> 
+				</li>
+				
+			</ui>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

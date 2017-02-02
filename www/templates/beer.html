@@ -1,0 +1,108 @@
+<ion-view view-title="To no bar!">
+  	<ion-content class="beerBg">
+  		<ion-refresher on-refresh="vm.doRefresh()">
+                     
+      	</ion-refresher>
+
+  		<div  ng-if="vm.amountToSpend">
+	  		<div class="row">
+				<p class="color-white intend-text">Limite de hoje: <span ng-bind="vm.amountToSpend | currency"></span></p>
+			</div>
+	  		<form novalidate name="priceForm" ng-submit="vm.storePrice(vm.beerPrice)">
+			    <div class="row">
+			    	<div class="col col-100 col-top">
+						<div class="list">
+							<p class="color-white intend-text">Qual preço da cerveja?</p>
+							<label class="spend-input item item-input">
+								<i class="icon ion-social-usd beer-orange"></i>
+				    			<input ng-model="vm.beerPrice" name="price" type="number">
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-50 col-bottom">
+					    <button ng-disabled="vm.chosePrice || priceForm.price.$pristine || vm.beerPrice==''" type="submit" class="button button-block button-energized" ng-required="true">
+						  Guardar preço
+						</button>
+					</div>
+					<div class="col col-50 col-bottom">
+						<button type="button" ng-click="vm.changePrice(vm.beerPrice)" class="button button-block button-energized">
+						  Alterar preço
+						</button>
+					</div>
+				</div>
+			</form>
+		    <div class="row">
+		    	<div class="col col-100 col-top">
+					<div class="list">
+						<p class="color-white intend-text">Contador de cerveja</p>
+						<label class="spend-input item item-input">
+						    <i class="icon ion-beer beer-orange"></i>
+			    			<input ng-model="vm.amount" type="number" placeholder="420" readonly>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-50 col-bottom">
+				    <button ng-click="vm.addBeer()" class="button button-block button-energized">
+						<i class="icon ion-ios-plus-outline"></i>
+					</button>
+				</div>
+				<div class="col col-50 col-bottom">
+					<button ng-click="vm.removeBeer()" class="button button-block button-energized">
+						<i class="icon ion-ios-minus-outline"></i>
+					</button>
+				</div>
+			</div>
+			
+			<div class="row">
+				<!-- <div class="col col-50">
+					<h5 class="color-white">Ja tomou:</h5>
+					<h1 class="color-white"><span ng-bind="vm.amount"></span></h1>
+				</div>
+				<div class="col col-50">
+					<h5 class="color-white">Vai pagar:</h5>
+					<h1 class="color-white"><span ng-bind="vm.priceToPay | currency"></span></h1>
+				</div> -->
+				<div class="col col-100">
+					<ui class="list">
+
+					  <li class="item custom-item">
+					    <p class="color-white it-title">Ja tomou:</p>
+					    <h3 class="it-value"><span ng-bind="vm.amount"></span></h3>
+					  </li>
+					  <li class="item custom-item">
+					    <p class="color-white it-title">Valor à pagar:</p>
+					    <h3 class="it-value"><span ng-bind="vm.priceToPay | currency:'R$'"></span></h3>
+					  </li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<ui class="list">
+					<li class="item custom-item">
+						<button ng-click="vm.divideValue()" class="button button-block button-energized">Dividir a conta</button>
+						<p ng-if="vm.finalPriceAfterDivided > 0">Cada pessoa pagará: <strong><span ng-bind="vm.finalPriceAfterDivided | currency:'R$'"></span></strong></p>
+					</li>
+				</ui>
+			</div>
+			<div class="row">
+				<div class="col col-100">
+					<button ng-click="vm.save(vm.beerPrice, vm.amount, vm.priceToPay, vm.numberOfPpl)" class="button button-block button-balanced">Salvar saída</button>
+				</div>
+			</div>	
+		</div>
+		<div ng-if="!vm.amountToSpend">
+			<div class="card">
+				<div class="item item-text-wrap">
+					<h3>Você precisa definir seus gastos</h3>
+				</div>
+			</div>
+		</div>
+	
+  	</ion-content>
+  	
+</ion-view>

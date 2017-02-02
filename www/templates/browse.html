@@ -1,0 +1,26 @@
+<ion-view view-title="Defina o que vai gastar">
+  <ion-content class="browseBg">
+  	<ion-refresher on-refresh="vm.doRefresh()">
+                     
+     </ion-refresher>
+    <div class="row">
+		<div class="col col-100">
+			<div class="list">
+				<h4 class="spend-title">Quanto pretende gastar hoje?</h4>
+				<label class="item item-input spend-input">
+					<i class="icon ion-social-usd beer-orange"></i>
+	    			<input ng-model="vm.howMuchToSpend" name="price" type="number">
+				</label>
+				
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-100">
+			<a ng-click="vm.setAmountToSpend(vm.howMuchToSpend)" class="btn-circle">
+			 	<i class="icon ion-android-done beer-orange-big"></i>
+			</a>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>
